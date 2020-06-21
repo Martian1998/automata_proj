@@ -1,0 +1,4096 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> root
+Rule 1     root -> expression
+Rule 2     root -> statements
+Rule 3     root -> empty
+Rule 4     statements -> statements statement SEMICOLON
+Rule 5     statements -> statement SEMICOLON
+Rule 6     statements -> statements if
+Rule 7     statements -> if
+Rule 8     if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else
+Rule 9     elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else
+Rule 10    elseif -> empty
+Rule 11    else -> ELSE LCURLY statements RCURLY
+Rule 12    else -> empty
+Rule 13    statement -> WORD DOT WORD EQUALS expression
+Rule 14    statement -> PRINT LPAREN print_list RPAREN
+Rule 15    print_list -> print_list DELIM expression
+Rule 16    print_list -> expression
+Rule 17    statement -> WORD WORD
+Rule 18    statement -> STRUCT WORD LCURLY var_decls RCURLY
+Rule 19    var_decls -> var_decls var_declare
+Rule 20    var_decls -> var_declare
+Rule 21    statement -> var_declare
+Rule 22    statement -> var_assign
+Rule 23    expression -> LPAREN expression RPAREN
+Rule 24    var_assign -> var_declare EQUALS expression
+Rule 25    var_assign -> WORD EQUALS expression
+Rule 26    var_declare -> INTNAME WORD
+Rule 27    var_declare -> DOUBLENAME WORD
+Rule 28    var_declare -> CHARNAME WORD
+Rule 29    var_declare -> STRINGNAME WORD
+Rule 30    var_declare -> BOOLNAME WORD
+Rule 31    expression -> expression MULTIPLY expression
+Rule 32    expression -> expression DIVIDE expression
+Rule 33    expression -> expression PLUS expression
+Rule 34    expression -> expression MINUS expression
+Rule 35    expression -> expression EXPONENT expression
+Rule 36    expression -> expression MODULUS expression
+Rule 37    expression -> expression AND expression
+Rule 38    expression -> expression OR expression
+Rule 39    expression -> expression EQ expression
+Rule 40    expression -> expression NE expression
+Rule 41    expression -> expression LTE expression
+Rule 42    expression -> expression GTE expression
+Rule 43    expression -> expression GT expression
+Rule 44    expression -> expression LT expression
+Rule 45    expression -> PLUS expression
+Rule 46    expression -> MINUS expression
+Rule 47    statement -> expression INC
+Rule 48    statement -> expression DEC
+Rule 49    expression -> NOT expression
+Rule 50    expression -> WORD
+Rule 51    expression -> INT
+Rule 52    expression -> DOUBLE
+Rule 53    expression -> CHAR
+Rule 54    expression -> STRING
+Rule 55    expression -> BOOL
+Rule 56    expression -> WORD DOT WORD
+Rule 57    empty -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 37
+BOOL                 : 55
+BOOLNAME             : 30
+CHAR                 : 53
+CHARNAME             : 28
+DEC                  : 48
+DELIM                : 15
+DIVIDE               : 32
+DOT                  : 13 56
+DOUBLE               : 52
+DOUBLENAME           : 27
+ELSE                 : 11
+ELSEIF               : 9
+EQ                   : 39
+EQUALS               : 13 24 25
+EXPONENT             : 35
+GT                   : 43
+GTE                  : 42
+IF                   : 8
+INC                  : 47
+INT                  : 51
+INTNAME              : 26
+LCURLY               : 8 9 11 18
+LPAREN               : 8 9 14 23
+LT                   : 44
+LTE                  : 41
+MINUS                : 34 46
+MODULUS              : 36
+MULTIPLY             : 31
+NE                   : 40
+NOT                  : 49
+OR                   : 38
+PLUS                 : 33 45
+PRINT                : 14
+RCURLY               : 8 9 11 18
+RPAREN               : 8 9 14 23
+SEMICOLON            : 4 5
+STRING               : 54
+STRINGNAME           : 29
+STRUCT               : 18
+WORD                 : 13 13 17 17 18 25 26 27 28 29 30 50 56 56
+error                : 
+
+Nonterminals, with rules where they appear
+
+else                 : 8 9
+elseif               : 8 9
+empty                : 3 10 12
+expression           : 1 8 9 13 15 16 23 24 25 31 31 32 32 33 33 34 34 35 35 36 36 37 37 38 38 39 39 40 40 41 41 42 42 43 43 44 44 45 46 47 48 49
+if                   : 6 7
+print_list           : 14 15
+root                 : 0
+statement            : 4 5
+statements           : 2 4 6 8 9 11
+var_assign           : 22
+var_declare          : 19 20 21 24
+var_decls            : 18 19
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . root
+    (1) root -> . expression
+    (2) root -> . statements
+    (3) root -> . empty
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+    (4) statements -> . statements statement SEMICOLON
+    (5) statements -> . statement SEMICOLON
+    (6) statements -> . statements if
+    (7) statements -> . if
+    (57) empty -> .
+    (13) statement -> . WORD DOT WORD EQUALS expression
+    (14) statement -> . PRINT LPAREN print_list RPAREN
+    (17) statement -> . WORD WORD
+    (18) statement -> . STRUCT WORD LCURLY var_decls RCURLY
+    (21) statement -> . var_declare
+    (22) statement -> . var_assign
+    (47) statement -> . expression INC
+    (48) statement -> . expression DEC
+    (8) if -> . IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else
+    (26) var_declare -> . INTNAME WORD
+    (27) var_declare -> . DOUBLENAME WORD
+    (28) var_declare -> . CHARNAME WORD
+    (29) var_declare -> . STRINGNAME WORD
+    (30) var_declare -> . BOOLNAME WORD
+    (24) var_assign -> . var_declare EQUALS expression
+    (25) var_assign -> . WORD EQUALS expression
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    $end            reduce using rule 57 (empty -> .)
+    PRINT           shift and go to state 17
+    STRUCT          shift and go to state 18
+    IF              shift and go to state 21
+    INTNAME         shift and go to state 22
+    DOUBLENAME      shift and go to state 23
+    CHARNAME        shift and go to state 24
+    STRINGNAME      shift and go to state 25
+    BOOLNAME        shift and go to state 26
+
+    root                           shift and go to state 1
+    expression                     shift and go to state 2
+    statements                     shift and go to state 3
+    empty                          shift and go to state 4
+    statement                      shift and go to state 15
+    if                             shift and go to state 16
+    var_declare                    shift and go to state 19
+    var_assign                     shift and go to state 20
+
+state 1
+
+    (0) S' -> root .
+
+
+
+state 2
+
+    (1) root -> expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+    (47) statement -> expression . INC
+    (48) statement -> expression . DEC
+
+    $end            reduce using rule 1 (root -> expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    LTE             shift and go to state 37
+    GTE             shift and go to state 38
+    GT              shift and go to state 39
+    LT              shift and go to state 40
+    INC             shift and go to state 41
+    DEC             shift and go to state 42
+
+
+state 3
+
+    (2) root -> statements .
+    (4) statements -> statements . statement SEMICOLON
+    (6) statements -> statements . if
+    (13) statement -> . WORD DOT WORD EQUALS expression
+    (14) statement -> . PRINT LPAREN print_list RPAREN
+    (17) statement -> . WORD WORD
+    (18) statement -> . STRUCT WORD LCURLY var_decls RCURLY
+    (21) statement -> . var_declare
+    (22) statement -> . var_assign
+    (47) statement -> . expression INC
+    (48) statement -> . expression DEC
+    (8) if -> . IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else
+    (26) var_declare -> . INTNAME WORD
+    (27) var_declare -> . DOUBLENAME WORD
+    (28) var_declare -> . CHARNAME WORD
+    (29) var_declare -> . STRINGNAME WORD
+    (30) var_declare -> . BOOLNAME WORD
+    (24) var_assign -> . var_declare EQUALS expression
+    (25) var_assign -> . WORD EQUALS expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    $end            reduce using rule 2 (root -> statements .)
+    WORD            shift and go to state 45
+    PRINT           shift and go to state 17
+    STRUCT          shift and go to state 18
+    IF              shift and go to state 21
+    INTNAME         shift and go to state 22
+    DOUBLENAME      shift and go to state 23
+    CHARNAME        shift and go to state 24
+    STRINGNAME      shift and go to state 25
+    BOOLNAME        shift and go to state 26
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    statement                      shift and go to state 43
+    if                             shift and go to state 44
+    expression                     shift and go to state 46
+    var_declare                    shift and go to state 19
+    var_assign                     shift and go to state 20
+
+state 4
+
+    (3) root -> empty .
+
+    $end            reduce using rule 3 (root -> empty .)
+
+
+state 5
+
+    (23) expression -> LPAREN . expression RPAREN
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 47
+
+state 6
+
+    (45) expression -> PLUS . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 49
+
+state 7
+
+    (46) expression -> MINUS . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 50
+
+state 8
+
+    (49) expression -> NOT . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 51
+
+state 9
+
+    (50) expression -> WORD .
+    (56) expression -> WORD . DOT WORD
+    (13) statement -> WORD . DOT WORD EQUALS expression
+    (17) statement -> WORD . WORD
+    (25) var_assign -> WORD . EQUALS expression
+
+    MULTIPLY        reduce using rule 50 (expression -> WORD .)
+    DIVIDE          reduce using rule 50 (expression -> WORD .)
+    PLUS            reduce using rule 50 (expression -> WORD .)
+    MINUS           reduce using rule 50 (expression -> WORD .)
+    EXPONENT        reduce using rule 50 (expression -> WORD .)
+    MODULUS         reduce using rule 50 (expression -> WORD .)
+    AND             reduce using rule 50 (expression -> WORD .)
+    OR              reduce using rule 50 (expression -> WORD .)
+    EQ              reduce using rule 50 (expression -> WORD .)
+    NE              reduce using rule 50 (expression -> WORD .)
+    LTE             reduce using rule 50 (expression -> WORD .)
+    GTE             reduce using rule 50 (expression -> WORD .)
+    GT              reduce using rule 50 (expression -> WORD .)
+    LT              reduce using rule 50 (expression -> WORD .)
+    INC             reduce using rule 50 (expression -> WORD .)
+    DEC             reduce using rule 50 (expression -> WORD .)
+    $end            reduce using rule 50 (expression -> WORD .)
+    DOT             shift and go to state 53
+    WORD            shift and go to state 52
+    EQUALS          shift and go to state 54
+
+
+state 10
+
+    (51) expression -> INT .
+
+    MULTIPLY        reduce using rule 51 (expression -> INT .)
+    DIVIDE          reduce using rule 51 (expression -> INT .)
+    PLUS            reduce using rule 51 (expression -> INT .)
+    MINUS           reduce using rule 51 (expression -> INT .)
+    EXPONENT        reduce using rule 51 (expression -> INT .)
+    MODULUS         reduce using rule 51 (expression -> INT .)
+    AND             reduce using rule 51 (expression -> INT .)
+    OR              reduce using rule 51 (expression -> INT .)
+    EQ              reduce using rule 51 (expression -> INT .)
+    NE              reduce using rule 51 (expression -> INT .)
+    LTE             reduce using rule 51 (expression -> INT .)
+    GTE             reduce using rule 51 (expression -> INT .)
+    GT              reduce using rule 51 (expression -> INT .)
+    LT              reduce using rule 51 (expression -> INT .)
+    INC             reduce using rule 51 (expression -> INT .)
+    DEC             reduce using rule 51 (expression -> INT .)
+    $end            reduce using rule 51 (expression -> INT .)
+    RPAREN          reduce using rule 51 (expression -> INT .)
+    SEMICOLON       reduce using rule 51 (expression -> INT .)
+    DELIM           reduce using rule 51 (expression -> INT .)
+
+
+state 11
+
+    (52) expression -> DOUBLE .
+
+    MULTIPLY        reduce using rule 52 (expression -> DOUBLE .)
+    DIVIDE          reduce using rule 52 (expression -> DOUBLE .)
+    PLUS            reduce using rule 52 (expression -> DOUBLE .)
+    MINUS           reduce using rule 52 (expression -> DOUBLE .)
+    EXPONENT        reduce using rule 52 (expression -> DOUBLE .)
+    MODULUS         reduce using rule 52 (expression -> DOUBLE .)
+    AND             reduce using rule 52 (expression -> DOUBLE .)
+    OR              reduce using rule 52 (expression -> DOUBLE .)
+    EQ              reduce using rule 52 (expression -> DOUBLE .)
+    NE              reduce using rule 52 (expression -> DOUBLE .)
+    LTE             reduce using rule 52 (expression -> DOUBLE .)
+    GTE             reduce using rule 52 (expression -> DOUBLE .)
+    GT              reduce using rule 52 (expression -> DOUBLE .)
+    LT              reduce using rule 52 (expression -> DOUBLE .)
+    INC             reduce using rule 52 (expression -> DOUBLE .)
+    DEC             reduce using rule 52 (expression -> DOUBLE .)
+    $end            reduce using rule 52 (expression -> DOUBLE .)
+    RPAREN          reduce using rule 52 (expression -> DOUBLE .)
+    SEMICOLON       reduce using rule 52 (expression -> DOUBLE .)
+    DELIM           reduce using rule 52 (expression -> DOUBLE .)
+
+
+state 12
+
+    (53) expression -> CHAR .
+
+    MULTIPLY        reduce using rule 53 (expression -> CHAR .)
+    DIVIDE          reduce using rule 53 (expression -> CHAR .)
+    PLUS            reduce using rule 53 (expression -> CHAR .)
+    MINUS           reduce using rule 53 (expression -> CHAR .)
+    EXPONENT        reduce using rule 53 (expression -> CHAR .)
+    MODULUS         reduce using rule 53 (expression -> CHAR .)
+    AND             reduce using rule 53 (expression -> CHAR .)
+    OR              reduce using rule 53 (expression -> CHAR .)
+    EQ              reduce using rule 53 (expression -> CHAR .)
+    NE              reduce using rule 53 (expression -> CHAR .)
+    LTE             reduce using rule 53 (expression -> CHAR .)
+    GTE             reduce using rule 53 (expression -> CHAR .)
+    GT              reduce using rule 53 (expression -> CHAR .)
+    LT              reduce using rule 53 (expression -> CHAR .)
+    INC             reduce using rule 53 (expression -> CHAR .)
+    DEC             reduce using rule 53 (expression -> CHAR .)
+    $end            reduce using rule 53 (expression -> CHAR .)
+    RPAREN          reduce using rule 53 (expression -> CHAR .)
+    SEMICOLON       reduce using rule 53 (expression -> CHAR .)
+    DELIM           reduce using rule 53 (expression -> CHAR .)
+
+
+state 13
+
+    (54) expression -> STRING .
+
+    MULTIPLY        reduce using rule 54 (expression -> STRING .)
+    DIVIDE          reduce using rule 54 (expression -> STRING .)
+    PLUS            reduce using rule 54 (expression -> STRING .)
+    MINUS           reduce using rule 54 (expression -> STRING .)
+    EXPONENT        reduce using rule 54 (expression -> STRING .)
+    MODULUS         reduce using rule 54 (expression -> STRING .)
+    AND             reduce using rule 54 (expression -> STRING .)
+    OR              reduce using rule 54 (expression -> STRING .)
+    EQ              reduce using rule 54 (expression -> STRING .)
+    NE              reduce using rule 54 (expression -> STRING .)
+    LTE             reduce using rule 54 (expression -> STRING .)
+    GTE             reduce using rule 54 (expression -> STRING .)
+    GT              reduce using rule 54 (expression -> STRING .)
+    LT              reduce using rule 54 (expression -> STRING .)
+    INC             reduce using rule 54 (expression -> STRING .)
+    DEC             reduce using rule 54 (expression -> STRING .)
+    $end            reduce using rule 54 (expression -> STRING .)
+    RPAREN          reduce using rule 54 (expression -> STRING .)
+    SEMICOLON       reduce using rule 54 (expression -> STRING .)
+    DELIM           reduce using rule 54 (expression -> STRING .)
+
+
+state 14
+
+    (55) expression -> BOOL .
+
+    MULTIPLY        reduce using rule 55 (expression -> BOOL .)
+    DIVIDE          reduce using rule 55 (expression -> BOOL .)
+    PLUS            reduce using rule 55 (expression -> BOOL .)
+    MINUS           reduce using rule 55 (expression -> BOOL .)
+    EXPONENT        reduce using rule 55 (expression -> BOOL .)
+    MODULUS         reduce using rule 55 (expression -> BOOL .)
+    AND             reduce using rule 55 (expression -> BOOL .)
+    OR              reduce using rule 55 (expression -> BOOL .)
+    EQ              reduce using rule 55 (expression -> BOOL .)
+    NE              reduce using rule 55 (expression -> BOOL .)
+    LTE             reduce using rule 55 (expression -> BOOL .)
+    GTE             reduce using rule 55 (expression -> BOOL .)
+    GT              reduce using rule 55 (expression -> BOOL .)
+    LT              reduce using rule 55 (expression -> BOOL .)
+    INC             reduce using rule 55 (expression -> BOOL .)
+    DEC             reduce using rule 55 (expression -> BOOL .)
+    $end            reduce using rule 55 (expression -> BOOL .)
+    RPAREN          reduce using rule 55 (expression -> BOOL .)
+    SEMICOLON       reduce using rule 55 (expression -> BOOL .)
+    DELIM           reduce using rule 55 (expression -> BOOL .)
+
+
+state 15
+
+    (5) statements -> statement . SEMICOLON
+
+    SEMICOLON       shift and go to state 55
+
+
+state 16
+
+    (7) statements -> if .
+
+    WORD            reduce using rule 7 (statements -> if .)
+    PRINT           reduce using rule 7 (statements -> if .)
+    STRUCT          reduce using rule 7 (statements -> if .)
+    IF              reduce using rule 7 (statements -> if .)
+    INTNAME         reduce using rule 7 (statements -> if .)
+    DOUBLENAME      reduce using rule 7 (statements -> if .)
+    CHARNAME        reduce using rule 7 (statements -> if .)
+    STRINGNAME      reduce using rule 7 (statements -> if .)
+    BOOLNAME        reduce using rule 7 (statements -> if .)
+    LPAREN          reduce using rule 7 (statements -> if .)
+    PLUS            reduce using rule 7 (statements -> if .)
+    MINUS           reduce using rule 7 (statements -> if .)
+    NOT             reduce using rule 7 (statements -> if .)
+    INT             reduce using rule 7 (statements -> if .)
+    DOUBLE          reduce using rule 7 (statements -> if .)
+    CHAR            reduce using rule 7 (statements -> if .)
+    STRING          reduce using rule 7 (statements -> if .)
+    BOOL            reduce using rule 7 (statements -> if .)
+    $end            reduce using rule 7 (statements -> if .)
+    RCURLY          reduce using rule 7 (statements -> if .)
+
+
+state 17
+
+    (14) statement -> PRINT . LPAREN print_list RPAREN
+
+    LPAREN          shift and go to state 56
+
+
+state 18
+
+    (18) statement -> STRUCT . WORD LCURLY var_decls RCURLY
+
+    WORD            shift and go to state 57
+
+
+state 19
+
+    (21) statement -> var_declare .
+    (24) var_assign -> var_declare . EQUALS expression
+
+    SEMICOLON       reduce using rule 21 (statement -> var_declare .)
+    EQUALS          shift and go to state 58
+
+
+state 20
+
+    (22) statement -> var_assign .
+
+    SEMICOLON       reduce using rule 22 (statement -> var_assign .)
+
+
+state 21
+
+    (8) if -> IF . LPAREN expression RPAREN LCURLY statements RCURLY elseif else
+
+    LPAREN          shift and go to state 59
+
+
+state 22
+
+    (26) var_declare -> INTNAME . WORD
+
+    WORD            shift and go to state 60
+
+
+state 23
+
+    (27) var_declare -> DOUBLENAME . WORD
+
+    WORD            shift and go to state 61
+
+
+state 24
+
+    (28) var_declare -> CHARNAME . WORD
+
+    WORD            shift and go to state 62
+
+
+state 25
+
+    (29) var_declare -> STRINGNAME . WORD
+
+    WORD            shift and go to state 63
+
+
+state 26
+
+    (30) var_declare -> BOOLNAME . WORD
+
+    WORD            shift and go to state 64
+
+
+state 27
+
+    (31) expression -> expression MULTIPLY . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 65
+
+state 28
+
+    (32) expression -> expression DIVIDE . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 66
+
+state 29
+
+    (33) expression -> expression PLUS . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 67
+
+state 30
+
+    (34) expression -> expression MINUS . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 68
+
+state 31
+
+    (35) expression -> expression EXPONENT . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 69
+
+state 32
+
+    (36) expression -> expression MODULUS . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 70
+
+state 33
+
+    (37) expression -> expression AND . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 71
+
+state 34
+
+    (38) expression -> expression OR . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 72
+
+state 35
+
+    (39) expression -> expression EQ . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 73
+
+state 36
+
+    (40) expression -> expression NE . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 74
+
+state 37
+
+    (41) expression -> expression LTE . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 75
+
+state 38
+
+    (42) expression -> expression GTE . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 76
+
+state 39
+
+    (43) expression -> expression GT . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 77
+
+state 40
+
+    (44) expression -> expression LT . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 78
+
+state 41
+
+    (47) statement -> expression INC .
+
+    SEMICOLON       reduce using rule 47 (statement -> expression INC .)
+
+
+state 42
+
+    (48) statement -> expression DEC .
+
+    SEMICOLON       reduce using rule 48 (statement -> expression DEC .)
+
+
+state 43
+
+    (4) statements -> statements statement . SEMICOLON
+
+    SEMICOLON       shift and go to state 79
+
+
+state 44
+
+    (6) statements -> statements if .
+
+    WORD            reduce using rule 6 (statements -> statements if .)
+    PRINT           reduce using rule 6 (statements -> statements if .)
+    STRUCT          reduce using rule 6 (statements -> statements if .)
+    IF              reduce using rule 6 (statements -> statements if .)
+    INTNAME         reduce using rule 6 (statements -> statements if .)
+    DOUBLENAME      reduce using rule 6 (statements -> statements if .)
+    CHARNAME        reduce using rule 6 (statements -> statements if .)
+    STRINGNAME      reduce using rule 6 (statements -> statements if .)
+    BOOLNAME        reduce using rule 6 (statements -> statements if .)
+    LPAREN          reduce using rule 6 (statements -> statements if .)
+    PLUS            reduce using rule 6 (statements -> statements if .)
+    MINUS           reduce using rule 6 (statements -> statements if .)
+    NOT             reduce using rule 6 (statements -> statements if .)
+    INT             reduce using rule 6 (statements -> statements if .)
+    DOUBLE          reduce using rule 6 (statements -> statements if .)
+    CHAR            reduce using rule 6 (statements -> statements if .)
+    STRING          reduce using rule 6 (statements -> statements if .)
+    BOOL            reduce using rule 6 (statements -> statements if .)
+    $end            reduce using rule 6 (statements -> statements if .)
+    RCURLY          reduce using rule 6 (statements -> statements if .)
+
+
+state 45
+
+    (13) statement -> WORD . DOT WORD EQUALS expression
+    (17) statement -> WORD . WORD
+    (25) var_assign -> WORD . EQUALS expression
+    (50) expression -> WORD .
+    (56) expression -> WORD . DOT WORD
+
+    DOT             shift and go to state 80
+    WORD            shift and go to state 52
+    EQUALS          shift and go to state 54
+    INC             reduce using rule 50 (expression -> WORD .)
+    DEC             reduce using rule 50 (expression -> WORD .)
+    MULTIPLY        reduce using rule 50 (expression -> WORD .)
+    DIVIDE          reduce using rule 50 (expression -> WORD .)
+    PLUS            reduce using rule 50 (expression -> WORD .)
+    MINUS           reduce using rule 50 (expression -> WORD .)
+    EXPONENT        reduce using rule 50 (expression -> WORD .)
+    MODULUS         reduce using rule 50 (expression -> WORD .)
+    AND             reduce using rule 50 (expression -> WORD .)
+    OR              reduce using rule 50 (expression -> WORD .)
+    EQ              reduce using rule 50 (expression -> WORD .)
+    NE              reduce using rule 50 (expression -> WORD .)
+    LTE             reduce using rule 50 (expression -> WORD .)
+    GTE             reduce using rule 50 (expression -> WORD .)
+    GT              reduce using rule 50 (expression -> WORD .)
+    LT              reduce using rule 50 (expression -> WORD .)
+
+
+state 46
+
+    (47) statement -> expression . INC
+    (48) statement -> expression . DEC
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    INC             shift and go to state 41
+    DEC             shift and go to state 42
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    LTE             shift and go to state 37
+    GTE             shift and go to state 38
+    GT              shift and go to state 39
+    LT              shift and go to state 40
+
+
+state 47
+
+    (23) expression -> LPAREN expression . RPAREN
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    RPAREN          shift and go to state 81
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    LTE             shift and go to state 37
+    GTE             shift and go to state 38
+    GT              shift and go to state 39
+    LT              shift and go to state 40
+
+
+state 48
+
+    (50) expression -> WORD .
+    (56) expression -> WORD . DOT WORD
+
+    RPAREN          reduce using rule 50 (expression -> WORD .)
+    MULTIPLY        reduce using rule 50 (expression -> WORD .)
+    DIVIDE          reduce using rule 50 (expression -> WORD .)
+    PLUS            reduce using rule 50 (expression -> WORD .)
+    MINUS           reduce using rule 50 (expression -> WORD .)
+    EXPONENT        reduce using rule 50 (expression -> WORD .)
+    MODULUS         reduce using rule 50 (expression -> WORD .)
+    AND             reduce using rule 50 (expression -> WORD .)
+    OR              reduce using rule 50 (expression -> WORD .)
+    EQ              reduce using rule 50 (expression -> WORD .)
+    NE              reduce using rule 50 (expression -> WORD .)
+    LTE             reduce using rule 50 (expression -> WORD .)
+    GTE             reduce using rule 50 (expression -> WORD .)
+    GT              reduce using rule 50 (expression -> WORD .)
+    LT              reduce using rule 50 (expression -> WORD .)
+    INC             reduce using rule 50 (expression -> WORD .)
+    DEC             reduce using rule 50 (expression -> WORD .)
+    $end            reduce using rule 50 (expression -> WORD .)
+    SEMICOLON       reduce using rule 50 (expression -> WORD .)
+    DELIM           reduce using rule 50 (expression -> WORD .)
+    DOT             shift and go to state 82
+
+
+state 49
+
+    (45) expression -> PLUS expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    PLUS            reduce using rule 45 (expression -> PLUS expression .)
+    MINUS           reduce using rule 45 (expression -> PLUS expression .)
+    AND             reduce using rule 45 (expression -> PLUS expression .)
+    OR              reduce using rule 45 (expression -> PLUS expression .)
+    EQ              reduce using rule 45 (expression -> PLUS expression .)
+    NE              reduce using rule 45 (expression -> PLUS expression .)
+    LTE             reduce using rule 45 (expression -> PLUS expression .)
+    GTE             reduce using rule 45 (expression -> PLUS expression .)
+    GT              reduce using rule 45 (expression -> PLUS expression .)
+    LT              reduce using rule 45 (expression -> PLUS expression .)
+    INC             reduce using rule 45 (expression -> PLUS expression .)
+    DEC             reduce using rule 45 (expression -> PLUS expression .)
+    $end            reduce using rule 45 (expression -> PLUS expression .)
+    RPAREN          reduce using rule 45 (expression -> PLUS expression .)
+    SEMICOLON       reduce using rule 45 (expression -> PLUS expression .)
+    DELIM           reduce using rule 45 (expression -> PLUS expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+
+  ! MULTIPLY        [ reduce using rule 45 (expression -> PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 45 (expression -> PLUS expression .) ]
+  ! EXPONENT        [ reduce using rule 45 (expression -> PLUS expression .) ]
+  ! MODULUS         [ reduce using rule 45 (expression -> PLUS expression .) ]
+  ! PLUS            [ shift and go to state 29 ]
+  ! MINUS           [ shift and go to state 30 ]
+  ! AND             [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! LTE             [ shift and go to state 37 ]
+  ! GTE             [ shift and go to state 38 ]
+  ! GT              [ shift and go to state 39 ]
+  ! LT              [ shift and go to state 40 ]
+
+
+state 50
+
+    (46) expression -> MINUS expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    PLUS            reduce using rule 46 (expression -> MINUS expression .)
+    MINUS           reduce using rule 46 (expression -> MINUS expression .)
+    AND             reduce using rule 46 (expression -> MINUS expression .)
+    OR              reduce using rule 46 (expression -> MINUS expression .)
+    EQ              reduce using rule 46 (expression -> MINUS expression .)
+    NE              reduce using rule 46 (expression -> MINUS expression .)
+    LTE             reduce using rule 46 (expression -> MINUS expression .)
+    GTE             reduce using rule 46 (expression -> MINUS expression .)
+    GT              reduce using rule 46 (expression -> MINUS expression .)
+    LT              reduce using rule 46 (expression -> MINUS expression .)
+    INC             reduce using rule 46 (expression -> MINUS expression .)
+    DEC             reduce using rule 46 (expression -> MINUS expression .)
+    $end            reduce using rule 46 (expression -> MINUS expression .)
+    RPAREN          reduce using rule 46 (expression -> MINUS expression .)
+    SEMICOLON       reduce using rule 46 (expression -> MINUS expression .)
+    DELIM           reduce using rule 46 (expression -> MINUS expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+
+  ! MULTIPLY        [ reduce using rule 46 (expression -> MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 46 (expression -> MINUS expression .) ]
+  ! EXPONENT        [ reduce using rule 46 (expression -> MINUS expression .) ]
+  ! MODULUS         [ reduce using rule 46 (expression -> MINUS expression .) ]
+  ! PLUS            [ shift and go to state 29 ]
+  ! MINUS           [ shift and go to state 30 ]
+  ! AND             [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! LTE             [ shift and go to state 37 ]
+  ! GTE             [ shift and go to state 38 ]
+  ! GT              [ shift and go to state 39 ]
+  ! LT              [ shift and go to state 40 ]
+
+
+state 51
+
+    (49) expression -> NOT expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    PLUS            reduce using rule 49 (expression -> NOT expression .)
+    MINUS           reduce using rule 49 (expression -> NOT expression .)
+    AND             reduce using rule 49 (expression -> NOT expression .)
+    OR              reduce using rule 49 (expression -> NOT expression .)
+    EQ              reduce using rule 49 (expression -> NOT expression .)
+    NE              reduce using rule 49 (expression -> NOT expression .)
+    LTE             reduce using rule 49 (expression -> NOT expression .)
+    GTE             reduce using rule 49 (expression -> NOT expression .)
+    GT              reduce using rule 49 (expression -> NOT expression .)
+    LT              reduce using rule 49 (expression -> NOT expression .)
+    INC             reduce using rule 49 (expression -> NOT expression .)
+    DEC             reduce using rule 49 (expression -> NOT expression .)
+    $end            reduce using rule 49 (expression -> NOT expression .)
+    RPAREN          reduce using rule 49 (expression -> NOT expression .)
+    SEMICOLON       reduce using rule 49 (expression -> NOT expression .)
+    DELIM           reduce using rule 49 (expression -> NOT expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+
+  ! MULTIPLY        [ reduce using rule 49 (expression -> NOT expression .) ]
+  ! DIVIDE          [ reduce using rule 49 (expression -> NOT expression .) ]
+  ! EXPONENT        [ reduce using rule 49 (expression -> NOT expression .) ]
+  ! MODULUS         [ reduce using rule 49 (expression -> NOT expression .) ]
+  ! PLUS            [ shift and go to state 29 ]
+  ! MINUS           [ shift and go to state 30 ]
+  ! AND             [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! LTE             [ shift and go to state 37 ]
+  ! GTE             [ shift and go to state 38 ]
+  ! GT              [ shift and go to state 39 ]
+  ! LT              [ shift and go to state 40 ]
+
+
+state 52
+
+    (17) statement -> WORD WORD .
+
+    SEMICOLON       reduce using rule 17 (statement -> WORD WORD .)
+
+
+state 53
+
+    (56) expression -> WORD DOT . WORD
+    (13) statement -> WORD DOT . WORD EQUALS expression
+
+    WORD            shift and go to state 83
+
+
+state 54
+
+    (25) var_assign -> WORD EQUALS . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 84
+
+state 55
+
+    (5) statements -> statement SEMICOLON .
+
+    WORD            reduce using rule 5 (statements -> statement SEMICOLON .)
+    PRINT           reduce using rule 5 (statements -> statement SEMICOLON .)
+    STRUCT          reduce using rule 5 (statements -> statement SEMICOLON .)
+    IF              reduce using rule 5 (statements -> statement SEMICOLON .)
+    INTNAME         reduce using rule 5 (statements -> statement SEMICOLON .)
+    DOUBLENAME      reduce using rule 5 (statements -> statement SEMICOLON .)
+    CHARNAME        reduce using rule 5 (statements -> statement SEMICOLON .)
+    STRINGNAME      reduce using rule 5 (statements -> statement SEMICOLON .)
+    BOOLNAME        reduce using rule 5 (statements -> statement SEMICOLON .)
+    LPAREN          reduce using rule 5 (statements -> statement SEMICOLON .)
+    PLUS            reduce using rule 5 (statements -> statement SEMICOLON .)
+    MINUS           reduce using rule 5 (statements -> statement SEMICOLON .)
+    NOT             reduce using rule 5 (statements -> statement SEMICOLON .)
+    INT             reduce using rule 5 (statements -> statement SEMICOLON .)
+    DOUBLE          reduce using rule 5 (statements -> statement SEMICOLON .)
+    CHAR            reduce using rule 5 (statements -> statement SEMICOLON .)
+    STRING          reduce using rule 5 (statements -> statement SEMICOLON .)
+    BOOL            reduce using rule 5 (statements -> statement SEMICOLON .)
+    $end            reduce using rule 5 (statements -> statement SEMICOLON .)
+    RCURLY          reduce using rule 5 (statements -> statement SEMICOLON .)
+
+
+state 56
+
+    (14) statement -> PRINT LPAREN . print_list RPAREN
+    (15) print_list -> . print_list DELIM expression
+    (16) print_list -> . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    print_list                     shift and go to state 85
+    expression                     shift and go to state 86
+
+state 57
+
+    (18) statement -> STRUCT WORD . LCURLY var_decls RCURLY
+
+    LCURLY          shift and go to state 87
+
+
+state 58
+
+    (24) var_assign -> var_declare EQUALS . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 88
+
+state 59
+
+    (8) if -> IF LPAREN . expression RPAREN LCURLY statements RCURLY elseif else
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 89
+
+state 60
+
+    (26) var_declare -> INTNAME WORD .
+
+    EQUALS          reduce using rule 26 (var_declare -> INTNAME WORD .)
+    SEMICOLON       reduce using rule 26 (var_declare -> INTNAME WORD .)
+    RCURLY          reduce using rule 26 (var_declare -> INTNAME WORD .)
+    INTNAME         reduce using rule 26 (var_declare -> INTNAME WORD .)
+    DOUBLENAME      reduce using rule 26 (var_declare -> INTNAME WORD .)
+    CHARNAME        reduce using rule 26 (var_declare -> INTNAME WORD .)
+    STRINGNAME      reduce using rule 26 (var_declare -> INTNAME WORD .)
+    BOOLNAME        reduce using rule 26 (var_declare -> INTNAME WORD .)
+
+
+state 61
+
+    (27) var_declare -> DOUBLENAME WORD .
+
+    EQUALS          reduce using rule 27 (var_declare -> DOUBLENAME WORD .)
+    SEMICOLON       reduce using rule 27 (var_declare -> DOUBLENAME WORD .)
+    RCURLY          reduce using rule 27 (var_declare -> DOUBLENAME WORD .)
+    INTNAME         reduce using rule 27 (var_declare -> DOUBLENAME WORD .)
+    DOUBLENAME      reduce using rule 27 (var_declare -> DOUBLENAME WORD .)
+    CHARNAME        reduce using rule 27 (var_declare -> DOUBLENAME WORD .)
+    STRINGNAME      reduce using rule 27 (var_declare -> DOUBLENAME WORD .)
+    BOOLNAME        reduce using rule 27 (var_declare -> DOUBLENAME WORD .)
+
+
+state 62
+
+    (28) var_declare -> CHARNAME WORD .
+
+    EQUALS          reduce using rule 28 (var_declare -> CHARNAME WORD .)
+    SEMICOLON       reduce using rule 28 (var_declare -> CHARNAME WORD .)
+    RCURLY          reduce using rule 28 (var_declare -> CHARNAME WORD .)
+    INTNAME         reduce using rule 28 (var_declare -> CHARNAME WORD .)
+    DOUBLENAME      reduce using rule 28 (var_declare -> CHARNAME WORD .)
+    CHARNAME        reduce using rule 28 (var_declare -> CHARNAME WORD .)
+    STRINGNAME      reduce using rule 28 (var_declare -> CHARNAME WORD .)
+    BOOLNAME        reduce using rule 28 (var_declare -> CHARNAME WORD .)
+
+
+state 63
+
+    (29) var_declare -> STRINGNAME WORD .
+
+    EQUALS          reduce using rule 29 (var_declare -> STRINGNAME WORD .)
+    SEMICOLON       reduce using rule 29 (var_declare -> STRINGNAME WORD .)
+    RCURLY          reduce using rule 29 (var_declare -> STRINGNAME WORD .)
+    INTNAME         reduce using rule 29 (var_declare -> STRINGNAME WORD .)
+    DOUBLENAME      reduce using rule 29 (var_declare -> STRINGNAME WORD .)
+    CHARNAME        reduce using rule 29 (var_declare -> STRINGNAME WORD .)
+    STRINGNAME      reduce using rule 29 (var_declare -> STRINGNAME WORD .)
+    BOOLNAME        reduce using rule 29 (var_declare -> STRINGNAME WORD .)
+
+
+state 64
+
+    (30) var_declare -> BOOLNAME WORD .
+
+    EQUALS          reduce using rule 30 (var_declare -> BOOLNAME WORD .)
+    SEMICOLON       reduce using rule 30 (var_declare -> BOOLNAME WORD .)
+    RCURLY          reduce using rule 30 (var_declare -> BOOLNAME WORD .)
+    INTNAME         reduce using rule 30 (var_declare -> BOOLNAME WORD .)
+    DOUBLENAME      reduce using rule 30 (var_declare -> BOOLNAME WORD .)
+    CHARNAME        reduce using rule 30 (var_declare -> BOOLNAME WORD .)
+    STRINGNAME      reduce using rule 30 (var_declare -> BOOLNAME WORD .)
+    BOOLNAME        reduce using rule 30 (var_declare -> BOOLNAME WORD .)
+
+
+state 65
+
+    (31) expression -> expression MULTIPLY expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    MULTIPLY        reduce using rule 31 (expression -> expression MULTIPLY expression .)
+    DIVIDE          reduce using rule 31 (expression -> expression MULTIPLY expression .)
+    PLUS            reduce using rule 31 (expression -> expression MULTIPLY expression .)
+    MINUS           reduce using rule 31 (expression -> expression MULTIPLY expression .)
+    AND             reduce using rule 31 (expression -> expression MULTIPLY expression .)
+    OR              reduce using rule 31 (expression -> expression MULTIPLY expression .)
+    EQ              reduce using rule 31 (expression -> expression MULTIPLY expression .)
+    NE              reduce using rule 31 (expression -> expression MULTIPLY expression .)
+    LTE             reduce using rule 31 (expression -> expression MULTIPLY expression .)
+    GTE             reduce using rule 31 (expression -> expression MULTIPLY expression .)
+    GT              reduce using rule 31 (expression -> expression MULTIPLY expression .)
+    LT              reduce using rule 31 (expression -> expression MULTIPLY expression .)
+    INC             reduce using rule 31 (expression -> expression MULTIPLY expression .)
+    DEC             reduce using rule 31 (expression -> expression MULTIPLY expression .)
+    $end            reduce using rule 31 (expression -> expression MULTIPLY expression .)
+    RPAREN          reduce using rule 31 (expression -> expression MULTIPLY expression .)
+    SEMICOLON       reduce using rule 31 (expression -> expression MULTIPLY expression .)
+    DELIM           reduce using rule 31 (expression -> expression MULTIPLY expression .)
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+
+  ! EXPONENT        [ reduce using rule 31 (expression -> expression MULTIPLY expression .) ]
+  ! MODULUS         [ reduce using rule 31 (expression -> expression MULTIPLY expression .) ]
+  ! MULTIPLY        [ shift and go to state 27 ]
+  ! DIVIDE          [ shift and go to state 28 ]
+  ! PLUS            [ shift and go to state 29 ]
+  ! MINUS           [ shift and go to state 30 ]
+  ! AND             [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! LTE             [ shift and go to state 37 ]
+  ! GTE             [ shift and go to state 38 ]
+  ! GT              [ shift and go to state 39 ]
+  ! LT              [ shift and go to state 40 ]
+
+
+state 66
+
+    (32) expression -> expression DIVIDE expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    MULTIPLY        reduce using rule 32 (expression -> expression DIVIDE expression .)
+    DIVIDE          reduce using rule 32 (expression -> expression DIVIDE expression .)
+    PLUS            reduce using rule 32 (expression -> expression DIVIDE expression .)
+    MINUS           reduce using rule 32 (expression -> expression DIVIDE expression .)
+    AND             reduce using rule 32 (expression -> expression DIVIDE expression .)
+    OR              reduce using rule 32 (expression -> expression DIVIDE expression .)
+    EQ              reduce using rule 32 (expression -> expression DIVIDE expression .)
+    NE              reduce using rule 32 (expression -> expression DIVIDE expression .)
+    LTE             reduce using rule 32 (expression -> expression DIVIDE expression .)
+    GTE             reduce using rule 32 (expression -> expression DIVIDE expression .)
+    GT              reduce using rule 32 (expression -> expression DIVIDE expression .)
+    LT              reduce using rule 32 (expression -> expression DIVIDE expression .)
+    INC             reduce using rule 32 (expression -> expression DIVIDE expression .)
+    DEC             reduce using rule 32 (expression -> expression DIVIDE expression .)
+    $end            reduce using rule 32 (expression -> expression DIVIDE expression .)
+    RPAREN          reduce using rule 32 (expression -> expression DIVIDE expression .)
+    SEMICOLON       reduce using rule 32 (expression -> expression DIVIDE expression .)
+    DELIM           reduce using rule 32 (expression -> expression DIVIDE expression .)
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+
+  ! EXPONENT        [ reduce using rule 32 (expression -> expression DIVIDE expression .) ]
+  ! MODULUS         [ reduce using rule 32 (expression -> expression DIVIDE expression .) ]
+  ! MULTIPLY        [ shift and go to state 27 ]
+  ! DIVIDE          [ shift and go to state 28 ]
+  ! PLUS            [ shift and go to state 29 ]
+  ! MINUS           [ shift and go to state 30 ]
+  ! AND             [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! LTE             [ shift and go to state 37 ]
+  ! GTE             [ shift and go to state 38 ]
+  ! GT              [ shift and go to state 39 ]
+  ! LT              [ shift and go to state 40 ]
+
+
+state 67
+
+    (33) expression -> expression PLUS expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    PLUS            reduce using rule 33 (expression -> expression PLUS expression .)
+    MINUS           reduce using rule 33 (expression -> expression PLUS expression .)
+    AND             reduce using rule 33 (expression -> expression PLUS expression .)
+    OR              reduce using rule 33 (expression -> expression PLUS expression .)
+    EQ              reduce using rule 33 (expression -> expression PLUS expression .)
+    NE              reduce using rule 33 (expression -> expression PLUS expression .)
+    LTE             reduce using rule 33 (expression -> expression PLUS expression .)
+    GTE             reduce using rule 33 (expression -> expression PLUS expression .)
+    GT              reduce using rule 33 (expression -> expression PLUS expression .)
+    LT              reduce using rule 33 (expression -> expression PLUS expression .)
+    INC             reduce using rule 33 (expression -> expression PLUS expression .)
+    DEC             reduce using rule 33 (expression -> expression PLUS expression .)
+    $end            reduce using rule 33 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 33 (expression -> expression PLUS expression .)
+    SEMICOLON       reduce using rule 33 (expression -> expression PLUS expression .)
+    DELIM           reduce using rule 33 (expression -> expression PLUS expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+
+  ! MULTIPLY        [ reduce using rule 33 (expression -> expression PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 33 (expression -> expression PLUS expression .) ]
+  ! EXPONENT        [ reduce using rule 33 (expression -> expression PLUS expression .) ]
+  ! MODULUS         [ reduce using rule 33 (expression -> expression PLUS expression .) ]
+  ! PLUS            [ shift and go to state 29 ]
+  ! MINUS           [ shift and go to state 30 ]
+  ! AND             [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! LTE             [ shift and go to state 37 ]
+  ! GTE             [ shift and go to state 38 ]
+  ! GT              [ shift and go to state 39 ]
+  ! LT              [ shift and go to state 40 ]
+
+
+state 68
+
+    (34) expression -> expression MINUS expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    PLUS            reduce using rule 34 (expression -> expression MINUS expression .)
+    MINUS           reduce using rule 34 (expression -> expression MINUS expression .)
+    AND             reduce using rule 34 (expression -> expression MINUS expression .)
+    OR              reduce using rule 34 (expression -> expression MINUS expression .)
+    EQ              reduce using rule 34 (expression -> expression MINUS expression .)
+    NE              reduce using rule 34 (expression -> expression MINUS expression .)
+    LTE             reduce using rule 34 (expression -> expression MINUS expression .)
+    GTE             reduce using rule 34 (expression -> expression MINUS expression .)
+    GT              reduce using rule 34 (expression -> expression MINUS expression .)
+    LT              reduce using rule 34 (expression -> expression MINUS expression .)
+    INC             reduce using rule 34 (expression -> expression MINUS expression .)
+    DEC             reduce using rule 34 (expression -> expression MINUS expression .)
+    $end            reduce using rule 34 (expression -> expression MINUS expression .)
+    RPAREN          reduce using rule 34 (expression -> expression MINUS expression .)
+    SEMICOLON       reduce using rule 34 (expression -> expression MINUS expression .)
+    DELIM           reduce using rule 34 (expression -> expression MINUS expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+
+  ! MULTIPLY        [ reduce using rule 34 (expression -> expression MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 34 (expression -> expression MINUS expression .) ]
+  ! EXPONENT        [ reduce using rule 34 (expression -> expression MINUS expression .) ]
+  ! MODULUS         [ reduce using rule 34 (expression -> expression MINUS expression .) ]
+  ! PLUS            [ shift and go to state 29 ]
+  ! MINUS           [ shift and go to state 30 ]
+  ! AND             [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! LTE             [ shift and go to state 37 ]
+  ! GTE             [ shift and go to state 38 ]
+  ! GT              [ shift and go to state 39 ]
+  ! LT              [ shift and go to state 40 ]
+
+
+state 69
+
+    (35) expression -> expression EXPONENT expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    MULTIPLY        reduce using rule 35 (expression -> expression EXPONENT expression .)
+    DIVIDE          reduce using rule 35 (expression -> expression EXPONENT expression .)
+    PLUS            reduce using rule 35 (expression -> expression EXPONENT expression .)
+    MINUS           reduce using rule 35 (expression -> expression EXPONENT expression .)
+    EXPONENT        reduce using rule 35 (expression -> expression EXPONENT expression .)
+    MODULUS         reduce using rule 35 (expression -> expression EXPONENT expression .)
+    AND             reduce using rule 35 (expression -> expression EXPONENT expression .)
+    OR              reduce using rule 35 (expression -> expression EXPONENT expression .)
+    EQ              reduce using rule 35 (expression -> expression EXPONENT expression .)
+    NE              reduce using rule 35 (expression -> expression EXPONENT expression .)
+    LTE             reduce using rule 35 (expression -> expression EXPONENT expression .)
+    GTE             reduce using rule 35 (expression -> expression EXPONENT expression .)
+    GT              reduce using rule 35 (expression -> expression EXPONENT expression .)
+    LT              reduce using rule 35 (expression -> expression EXPONENT expression .)
+    INC             reduce using rule 35 (expression -> expression EXPONENT expression .)
+    DEC             reduce using rule 35 (expression -> expression EXPONENT expression .)
+    $end            reduce using rule 35 (expression -> expression EXPONENT expression .)
+    RPAREN          reduce using rule 35 (expression -> expression EXPONENT expression .)
+    SEMICOLON       reduce using rule 35 (expression -> expression EXPONENT expression .)
+    DELIM           reduce using rule 35 (expression -> expression EXPONENT expression .)
+
+  ! MULTIPLY        [ shift and go to state 27 ]
+  ! DIVIDE          [ shift and go to state 28 ]
+  ! PLUS            [ shift and go to state 29 ]
+  ! MINUS           [ shift and go to state 30 ]
+  ! EXPONENT        [ shift and go to state 31 ]
+  ! MODULUS         [ shift and go to state 32 ]
+  ! AND             [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! LTE             [ shift and go to state 37 ]
+  ! GTE             [ shift and go to state 38 ]
+  ! GT              [ shift and go to state 39 ]
+  ! LT              [ shift and go to state 40 ]
+
+
+state 70
+
+    (36) expression -> expression MODULUS expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    MULTIPLY        reduce using rule 36 (expression -> expression MODULUS expression .)
+    DIVIDE          reduce using rule 36 (expression -> expression MODULUS expression .)
+    PLUS            reduce using rule 36 (expression -> expression MODULUS expression .)
+    MINUS           reduce using rule 36 (expression -> expression MODULUS expression .)
+    EXPONENT        reduce using rule 36 (expression -> expression MODULUS expression .)
+    MODULUS         reduce using rule 36 (expression -> expression MODULUS expression .)
+    AND             reduce using rule 36 (expression -> expression MODULUS expression .)
+    OR              reduce using rule 36 (expression -> expression MODULUS expression .)
+    EQ              reduce using rule 36 (expression -> expression MODULUS expression .)
+    NE              reduce using rule 36 (expression -> expression MODULUS expression .)
+    LTE             reduce using rule 36 (expression -> expression MODULUS expression .)
+    GTE             reduce using rule 36 (expression -> expression MODULUS expression .)
+    GT              reduce using rule 36 (expression -> expression MODULUS expression .)
+    LT              reduce using rule 36 (expression -> expression MODULUS expression .)
+    INC             reduce using rule 36 (expression -> expression MODULUS expression .)
+    DEC             reduce using rule 36 (expression -> expression MODULUS expression .)
+    $end            reduce using rule 36 (expression -> expression MODULUS expression .)
+    RPAREN          reduce using rule 36 (expression -> expression MODULUS expression .)
+    SEMICOLON       reduce using rule 36 (expression -> expression MODULUS expression .)
+    DELIM           reduce using rule 36 (expression -> expression MODULUS expression .)
+
+  ! MULTIPLY        [ shift and go to state 27 ]
+  ! DIVIDE          [ shift and go to state 28 ]
+  ! PLUS            [ shift and go to state 29 ]
+  ! MINUS           [ shift and go to state 30 ]
+  ! EXPONENT        [ shift and go to state 31 ]
+  ! MODULUS         [ shift and go to state 32 ]
+  ! AND             [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! LTE             [ shift and go to state 37 ]
+  ! GTE             [ shift and go to state 38 ]
+  ! GT              [ shift and go to state 39 ]
+  ! LT              [ shift and go to state 40 ]
+
+
+state 71
+
+    (37) expression -> expression AND expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    AND             reduce using rule 37 (expression -> expression AND expression .)
+    OR              reduce using rule 37 (expression -> expression AND expression .)
+    INC             reduce using rule 37 (expression -> expression AND expression .)
+    DEC             reduce using rule 37 (expression -> expression AND expression .)
+    $end            reduce using rule 37 (expression -> expression AND expression .)
+    RPAREN          reduce using rule 37 (expression -> expression AND expression .)
+    SEMICOLON       reduce using rule 37 (expression -> expression AND expression .)
+    DELIM           reduce using rule 37 (expression -> expression AND expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    LTE             shift and go to state 37
+    GTE             shift and go to state 38
+    GT              shift and go to state 39
+    LT              shift and go to state 40
+
+  ! MULTIPLY        [ reduce using rule 37 (expression -> expression AND expression .) ]
+  ! DIVIDE          [ reduce using rule 37 (expression -> expression AND expression .) ]
+  ! PLUS            [ reduce using rule 37 (expression -> expression AND expression .) ]
+  ! MINUS           [ reduce using rule 37 (expression -> expression AND expression .) ]
+  ! EXPONENT        [ reduce using rule 37 (expression -> expression AND expression .) ]
+  ! MODULUS         [ reduce using rule 37 (expression -> expression AND expression .) ]
+  ! EQ              [ reduce using rule 37 (expression -> expression AND expression .) ]
+  ! NE              [ reduce using rule 37 (expression -> expression AND expression .) ]
+  ! LTE             [ reduce using rule 37 (expression -> expression AND expression .) ]
+  ! GTE             [ reduce using rule 37 (expression -> expression AND expression .) ]
+  ! GT              [ reduce using rule 37 (expression -> expression AND expression .) ]
+  ! LT              [ reduce using rule 37 (expression -> expression AND expression .) ]
+  ! AND             [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 34 ]
+
+
+state 72
+
+    (38) expression -> expression OR expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    AND             reduce using rule 38 (expression -> expression OR expression .)
+    OR              reduce using rule 38 (expression -> expression OR expression .)
+    INC             reduce using rule 38 (expression -> expression OR expression .)
+    DEC             reduce using rule 38 (expression -> expression OR expression .)
+    $end            reduce using rule 38 (expression -> expression OR expression .)
+    RPAREN          reduce using rule 38 (expression -> expression OR expression .)
+    SEMICOLON       reduce using rule 38 (expression -> expression OR expression .)
+    DELIM           reduce using rule 38 (expression -> expression OR expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    LTE             shift and go to state 37
+    GTE             shift and go to state 38
+    GT              shift and go to state 39
+    LT              shift and go to state 40
+
+  ! MULTIPLY        [ reduce using rule 38 (expression -> expression OR expression .) ]
+  ! DIVIDE          [ reduce using rule 38 (expression -> expression OR expression .) ]
+  ! PLUS            [ reduce using rule 38 (expression -> expression OR expression .) ]
+  ! MINUS           [ reduce using rule 38 (expression -> expression OR expression .) ]
+  ! EXPONENT        [ reduce using rule 38 (expression -> expression OR expression .) ]
+  ! MODULUS         [ reduce using rule 38 (expression -> expression OR expression .) ]
+  ! EQ              [ reduce using rule 38 (expression -> expression OR expression .) ]
+  ! NE              [ reduce using rule 38 (expression -> expression OR expression .) ]
+  ! LTE             [ reduce using rule 38 (expression -> expression OR expression .) ]
+  ! GTE             [ reduce using rule 38 (expression -> expression OR expression .) ]
+  ! GT              [ reduce using rule 38 (expression -> expression OR expression .) ]
+  ! LT              [ reduce using rule 38 (expression -> expression OR expression .) ]
+  ! AND             [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 34 ]
+
+
+state 73
+
+    (39) expression -> expression EQ expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    AND             reduce using rule 39 (expression -> expression EQ expression .)
+    OR              reduce using rule 39 (expression -> expression EQ expression .)
+    EQ              reduce using rule 39 (expression -> expression EQ expression .)
+    NE              reduce using rule 39 (expression -> expression EQ expression .)
+    INC             reduce using rule 39 (expression -> expression EQ expression .)
+    DEC             reduce using rule 39 (expression -> expression EQ expression .)
+    $end            reduce using rule 39 (expression -> expression EQ expression .)
+    RPAREN          reduce using rule 39 (expression -> expression EQ expression .)
+    SEMICOLON       reduce using rule 39 (expression -> expression EQ expression .)
+    DELIM           reduce using rule 39 (expression -> expression EQ expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+    LTE             shift and go to state 37
+    GTE             shift and go to state 38
+    GT              shift and go to state 39
+    LT              shift and go to state 40
+
+  ! MULTIPLY        [ reduce using rule 39 (expression -> expression EQ expression .) ]
+  ! DIVIDE          [ reduce using rule 39 (expression -> expression EQ expression .) ]
+  ! PLUS            [ reduce using rule 39 (expression -> expression EQ expression .) ]
+  ! MINUS           [ reduce using rule 39 (expression -> expression EQ expression .) ]
+  ! EXPONENT        [ reduce using rule 39 (expression -> expression EQ expression .) ]
+  ! MODULUS         [ reduce using rule 39 (expression -> expression EQ expression .) ]
+  ! LTE             [ reduce using rule 39 (expression -> expression EQ expression .) ]
+  ! GTE             [ reduce using rule 39 (expression -> expression EQ expression .) ]
+  ! GT              [ reduce using rule 39 (expression -> expression EQ expression .) ]
+  ! LT              [ reduce using rule 39 (expression -> expression EQ expression .) ]
+  ! AND             [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+
+
+state 74
+
+    (40) expression -> expression NE expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    AND             reduce using rule 40 (expression -> expression NE expression .)
+    OR              reduce using rule 40 (expression -> expression NE expression .)
+    EQ              reduce using rule 40 (expression -> expression NE expression .)
+    NE              reduce using rule 40 (expression -> expression NE expression .)
+    INC             reduce using rule 40 (expression -> expression NE expression .)
+    DEC             reduce using rule 40 (expression -> expression NE expression .)
+    $end            reduce using rule 40 (expression -> expression NE expression .)
+    RPAREN          reduce using rule 40 (expression -> expression NE expression .)
+    SEMICOLON       reduce using rule 40 (expression -> expression NE expression .)
+    DELIM           reduce using rule 40 (expression -> expression NE expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+    LTE             shift and go to state 37
+    GTE             shift and go to state 38
+    GT              shift and go to state 39
+    LT              shift and go to state 40
+
+  ! MULTIPLY        [ reduce using rule 40 (expression -> expression NE expression .) ]
+  ! DIVIDE          [ reduce using rule 40 (expression -> expression NE expression .) ]
+  ! PLUS            [ reduce using rule 40 (expression -> expression NE expression .) ]
+  ! MINUS           [ reduce using rule 40 (expression -> expression NE expression .) ]
+  ! EXPONENT        [ reduce using rule 40 (expression -> expression NE expression .) ]
+  ! MODULUS         [ reduce using rule 40 (expression -> expression NE expression .) ]
+  ! LTE             [ reduce using rule 40 (expression -> expression NE expression .) ]
+  ! GTE             [ reduce using rule 40 (expression -> expression NE expression .) ]
+  ! GT              [ reduce using rule 40 (expression -> expression NE expression .) ]
+  ! LT              [ reduce using rule 40 (expression -> expression NE expression .) ]
+  ! AND             [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+
+
+state 75
+
+    (41) expression -> expression LTE expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    AND             reduce using rule 41 (expression -> expression LTE expression .)
+    OR              reduce using rule 41 (expression -> expression LTE expression .)
+    EQ              reduce using rule 41 (expression -> expression LTE expression .)
+    NE              reduce using rule 41 (expression -> expression LTE expression .)
+    LTE             reduce using rule 41 (expression -> expression LTE expression .)
+    GTE             reduce using rule 41 (expression -> expression LTE expression .)
+    GT              reduce using rule 41 (expression -> expression LTE expression .)
+    LT              reduce using rule 41 (expression -> expression LTE expression .)
+    INC             reduce using rule 41 (expression -> expression LTE expression .)
+    DEC             reduce using rule 41 (expression -> expression LTE expression .)
+    $end            reduce using rule 41 (expression -> expression LTE expression .)
+    RPAREN          reduce using rule 41 (expression -> expression LTE expression .)
+    SEMICOLON       reduce using rule 41 (expression -> expression LTE expression .)
+    DELIM           reduce using rule 41 (expression -> expression LTE expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+
+  ! MULTIPLY        [ reduce using rule 41 (expression -> expression LTE expression .) ]
+  ! DIVIDE          [ reduce using rule 41 (expression -> expression LTE expression .) ]
+  ! PLUS            [ reduce using rule 41 (expression -> expression LTE expression .) ]
+  ! MINUS           [ reduce using rule 41 (expression -> expression LTE expression .) ]
+  ! EXPONENT        [ reduce using rule 41 (expression -> expression LTE expression .) ]
+  ! MODULUS         [ reduce using rule 41 (expression -> expression LTE expression .) ]
+  ! AND             [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! LTE             [ shift and go to state 37 ]
+  ! GTE             [ shift and go to state 38 ]
+  ! GT              [ shift and go to state 39 ]
+  ! LT              [ shift and go to state 40 ]
+
+
+state 76
+
+    (42) expression -> expression GTE expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    AND             reduce using rule 42 (expression -> expression GTE expression .)
+    OR              reduce using rule 42 (expression -> expression GTE expression .)
+    EQ              reduce using rule 42 (expression -> expression GTE expression .)
+    NE              reduce using rule 42 (expression -> expression GTE expression .)
+    LTE             reduce using rule 42 (expression -> expression GTE expression .)
+    GTE             reduce using rule 42 (expression -> expression GTE expression .)
+    GT              reduce using rule 42 (expression -> expression GTE expression .)
+    LT              reduce using rule 42 (expression -> expression GTE expression .)
+    INC             reduce using rule 42 (expression -> expression GTE expression .)
+    DEC             reduce using rule 42 (expression -> expression GTE expression .)
+    $end            reduce using rule 42 (expression -> expression GTE expression .)
+    RPAREN          reduce using rule 42 (expression -> expression GTE expression .)
+    SEMICOLON       reduce using rule 42 (expression -> expression GTE expression .)
+    DELIM           reduce using rule 42 (expression -> expression GTE expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+
+  ! MULTIPLY        [ reduce using rule 42 (expression -> expression GTE expression .) ]
+  ! DIVIDE          [ reduce using rule 42 (expression -> expression GTE expression .) ]
+  ! PLUS            [ reduce using rule 42 (expression -> expression GTE expression .) ]
+  ! MINUS           [ reduce using rule 42 (expression -> expression GTE expression .) ]
+  ! EXPONENT        [ reduce using rule 42 (expression -> expression GTE expression .) ]
+  ! MODULUS         [ reduce using rule 42 (expression -> expression GTE expression .) ]
+  ! AND             [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! LTE             [ shift and go to state 37 ]
+  ! GTE             [ shift and go to state 38 ]
+  ! GT              [ shift and go to state 39 ]
+  ! LT              [ shift and go to state 40 ]
+
+
+state 77
+
+    (43) expression -> expression GT expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    AND             reduce using rule 43 (expression -> expression GT expression .)
+    OR              reduce using rule 43 (expression -> expression GT expression .)
+    EQ              reduce using rule 43 (expression -> expression GT expression .)
+    NE              reduce using rule 43 (expression -> expression GT expression .)
+    LTE             reduce using rule 43 (expression -> expression GT expression .)
+    GTE             reduce using rule 43 (expression -> expression GT expression .)
+    GT              reduce using rule 43 (expression -> expression GT expression .)
+    LT              reduce using rule 43 (expression -> expression GT expression .)
+    INC             reduce using rule 43 (expression -> expression GT expression .)
+    DEC             reduce using rule 43 (expression -> expression GT expression .)
+    $end            reduce using rule 43 (expression -> expression GT expression .)
+    RPAREN          reduce using rule 43 (expression -> expression GT expression .)
+    SEMICOLON       reduce using rule 43 (expression -> expression GT expression .)
+    DELIM           reduce using rule 43 (expression -> expression GT expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+
+  ! MULTIPLY        [ reduce using rule 43 (expression -> expression GT expression .) ]
+  ! DIVIDE          [ reduce using rule 43 (expression -> expression GT expression .) ]
+  ! PLUS            [ reduce using rule 43 (expression -> expression GT expression .) ]
+  ! MINUS           [ reduce using rule 43 (expression -> expression GT expression .) ]
+  ! EXPONENT        [ reduce using rule 43 (expression -> expression GT expression .) ]
+  ! MODULUS         [ reduce using rule 43 (expression -> expression GT expression .) ]
+  ! AND             [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! LTE             [ shift and go to state 37 ]
+  ! GTE             [ shift and go to state 38 ]
+  ! GT              [ shift and go to state 39 ]
+  ! LT              [ shift and go to state 40 ]
+
+
+state 78
+
+    (44) expression -> expression LT expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    AND             reduce using rule 44 (expression -> expression LT expression .)
+    OR              reduce using rule 44 (expression -> expression LT expression .)
+    EQ              reduce using rule 44 (expression -> expression LT expression .)
+    NE              reduce using rule 44 (expression -> expression LT expression .)
+    LTE             reduce using rule 44 (expression -> expression LT expression .)
+    GTE             reduce using rule 44 (expression -> expression LT expression .)
+    GT              reduce using rule 44 (expression -> expression LT expression .)
+    LT              reduce using rule 44 (expression -> expression LT expression .)
+    INC             reduce using rule 44 (expression -> expression LT expression .)
+    DEC             reduce using rule 44 (expression -> expression LT expression .)
+    $end            reduce using rule 44 (expression -> expression LT expression .)
+    RPAREN          reduce using rule 44 (expression -> expression LT expression .)
+    SEMICOLON       reduce using rule 44 (expression -> expression LT expression .)
+    DELIM           reduce using rule 44 (expression -> expression LT expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+
+  ! MULTIPLY        [ reduce using rule 44 (expression -> expression LT expression .) ]
+  ! DIVIDE          [ reduce using rule 44 (expression -> expression LT expression .) ]
+  ! PLUS            [ reduce using rule 44 (expression -> expression LT expression .) ]
+  ! MINUS           [ reduce using rule 44 (expression -> expression LT expression .) ]
+  ! EXPONENT        [ reduce using rule 44 (expression -> expression LT expression .) ]
+  ! MODULUS         [ reduce using rule 44 (expression -> expression LT expression .) ]
+  ! AND             [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! LTE             [ shift and go to state 37 ]
+  ! GTE             [ shift and go to state 38 ]
+  ! GT              [ shift and go to state 39 ]
+  ! LT              [ shift and go to state 40 ]
+
+
+state 79
+
+    (4) statements -> statements statement SEMICOLON .
+
+    WORD            reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    PRINT           reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    STRUCT          reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    IF              reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    INTNAME         reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    DOUBLENAME      reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    CHARNAME        reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    STRINGNAME      reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    BOOLNAME        reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    LPAREN          reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    PLUS            reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    MINUS           reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    NOT             reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    INT             reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    DOUBLE          reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    CHAR            reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    STRING          reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    BOOL            reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    $end            reduce using rule 4 (statements -> statements statement SEMICOLON .)
+    RCURLY          reduce using rule 4 (statements -> statements statement SEMICOLON .)
+
+
+state 80
+
+    (13) statement -> WORD DOT . WORD EQUALS expression
+    (56) expression -> WORD DOT . WORD
+
+    WORD            shift and go to state 90
+
+
+state 81
+
+    (23) expression -> LPAREN expression RPAREN .
+
+    MULTIPLY        reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    EXPONENT        reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    MODULUS         reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    AND             reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    OR              reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    EQ              reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    NE              reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    LTE             reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    GTE             reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    GT              reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    LT              reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    INC             reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    DEC             reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    $end            reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    SEMICOLON       reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+    DELIM           reduce using rule 23 (expression -> LPAREN expression RPAREN .)
+
+
+state 82
+
+    (56) expression -> WORD DOT . WORD
+
+    WORD            shift and go to state 91
+
+
+state 83
+
+    (56) expression -> WORD DOT WORD .
+    (13) statement -> WORD DOT WORD . EQUALS expression
+
+    MULTIPLY        reduce using rule 56 (expression -> WORD DOT WORD .)
+    DIVIDE          reduce using rule 56 (expression -> WORD DOT WORD .)
+    PLUS            reduce using rule 56 (expression -> WORD DOT WORD .)
+    MINUS           reduce using rule 56 (expression -> WORD DOT WORD .)
+    EXPONENT        reduce using rule 56 (expression -> WORD DOT WORD .)
+    MODULUS         reduce using rule 56 (expression -> WORD DOT WORD .)
+    AND             reduce using rule 56 (expression -> WORD DOT WORD .)
+    OR              reduce using rule 56 (expression -> WORD DOT WORD .)
+    EQ              reduce using rule 56 (expression -> WORD DOT WORD .)
+    NE              reduce using rule 56 (expression -> WORD DOT WORD .)
+    LTE             reduce using rule 56 (expression -> WORD DOT WORD .)
+    GTE             reduce using rule 56 (expression -> WORD DOT WORD .)
+    GT              reduce using rule 56 (expression -> WORD DOT WORD .)
+    LT              reduce using rule 56 (expression -> WORD DOT WORD .)
+    INC             reduce using rule 56 (expression -> WORD DOT WORD .)
+    DEC             reduce using rule 56 (expression -> WORD DOT WORD .)
+    $end            reduce using rule 56 (expression -> WORD DOT WORD .)
+    EQUALS          shift and go to state 92
+
+
+state 84
+
+    (25) var_assign -> WORD EQUALS expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    SEMICOLON       reduce using rule 25 (var_assign -> WORD EQUALS expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    LTE             shift and go to state 37
+    GTE             shift and go to state 38
+    GT              shift and go to state 39
+    LT              shift and go to state 40
+
+
+state 85
+
+    (14) statement -> PRINT LPAREN print_list . RPAREN
+    (15) print_list -> print_list . DELIM expression
+
+    RPAREN          shift and go to state 93
+    DELIM           shift and go to state 94
+
+
+state 86
+
+    (16) print_list -> expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    RPAREN          reduce using rule 16 (print_list -> expression .)
+    DELIM           reduce using rule 16 (print_list -> expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    LTE             shift and go to state 37
+    GTE             shift and go to state 38
+    GT              shift and go to state 39
+    LT              shift and go to state 40
+
+
+state 87
+
+    (18) statement -> STRUCT WORD LCURLY . var_decls RCURLY
+    (19) var_decls -> . var_decls var_declare
+    (20) var_decls -> . var_declare
+    (26) var_declare -> . INTNAME WORD
+    (27) var_declare -> . DOUBLENAME WORD
+    (28) var_declare -> . CHARNAME WORD
+    (29) var_declare -> . STRINGNAME WORD
+    (30) var_declare -> . BOOLNAME WORD
+
+    INTNAME         shift and go to state 22
+    DOUBLENAME      shift and go to state 23
+    CHARNAME        shift and go to state 24
+    STRINGNAME      shift and go to state 25
+    BOOLNAME        shift and go to state 26
+
+    var_decls                      shift and go to state 95
+    var_declare                    shift and go to state 96
+
+state 88
+
+    (24) var_assign -> var_declare EQUALS expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    SEMICOLON       reduce using rule 24 (var_assign -> var_declare EQUALS expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    LTE             shift and go to state 37
+    GTE             shift and go to state 38
+    GT              shift and go to state 39
+    LT              shift and go to state 40
+
+
+state 89
+
+    (8) if -> IF LPAREN expression . RPAREN LCURLY statements RCURLY elseif else
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    RPAREN          shift and go to state 97
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    LTE             shift and go to state 37
+    GTE             shift and go to state 38
+    GT              shift and go to state 39
+    LT              shift and go to state 40
+
+
+state 90
+
+    (13) statement -> WORD DOT WORD . EQUALS expression
+    (56) expression -> WORD DOT WORD .
+
+    EQUALS          shift and go to state 92
+    INC             reduce using rule 56 (expression -> WORD DOT WORD .)
+    DEC             reduce using rule 56 (expression -> WORD DOT WORD .)
+    MULTIPLY        reduce using rule 56 (expression -> WORD DOT WORD .)
+    DIVIDE          reduce using rule 56 (expression -> WORD DOT WORD .)
+    PLUS            reduce using rule 56 (expression -> WORD DOT WORD .)
+    MINUS           reduce using rule 56 (expression -> WORD DOT WORD .)
+    EXPONENT        reduce using rule 56 (expression -> WORD DOT WORD .)
+    MODULUS         reduce using rule 56 (expression -> WORD DOT WORD .)
+    AND             reduce using rule 56 (expression -> WORD DOT WORD .)
+    OR              reduce using rule 56 (expression -> WORD DOT WORD .)
+    EQ              reduce using rule 56 (expression -> WORD DOT WORD .)
+    NE              reduce using rule 56 (expression -> WORD DOT WORD .)
+    LTE             reduce using rule 56 (expression -> WORD DOT WORD .)
+    GTE             reduce using rule 56 (expression -> WORD DOT WORD .)
+    GT              reduce using rule 56 (expression -> WORD DOT WORD .)
+    LT              reduce using rule 56 (expression -> WORD DOT WORD .)
+
+
+state 91
+
+    (56) expression -> WORD DOT WORD .
+
+    RPAREN          reduce using rule 56 (expression -> WORD DOT WORD .)
+    MULTIPLY        reduce using rule 56 (expression -> WORD DOT WORD .)
+    DIVIDE          reduce using rule 56 (expression -> WORD DOT WORD .)
+    PLUS            reduce using rule 56 (expression -> WORD DOT WORD .)
+    MINUS           reduce using rule 56 (expression -> WORD DOT WORD .)
+    EXPONENT        reduce using rule 56 (expression -> WORD DOT WORD .)
+    MODULUS         reduce using rule 56 (expression -> WORD DOT WORD .)
+    AND             reduce using rule 56 (expression -> WORD DOT WORD .)
+    OR              reduce using rule 56 (expression -> WORD DOT WORD .)
+    EQ              reduce using rule 56 (expression -> WORD DOT WORD .)
+    NE              reduce using rule 56 (expression -> WORD DOT WORD .)
+    LTE             reduce using rule 56 (expression -> WORD DOT WORD .)
+    GTE             reduce using rule 56 (expression -> WORD DOT WORD .)
+    GT              reduce using rule 56 (expression -> WORD DOT WORD .)
+    LT              reduce using rule 56 (expression -> WORD DOT WORD .)
+    INC             reduce using rule 56 (expression -> WORD DOT WORD .)
+    DEC             reduce using rule 56 (expression -> WORD DOT WORD .)
+    $end            reduce using rule 56 (expression -> WORD DOT WORD .)
+    SEMICOLON       reduce using rule 56 (expression -> WORD DOT WORD .)
+    DELIM           reduce using rule 56 (expression -> WORD DOT WORD .)
+
+
+state 92
+
+    (13) statement -> WORD DOT WORD EQUALS . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 98
+
+state 93
+
+    (14) statement -> PRINT LPAREN print_list RPAREN .
+
+    SEMICOLON       reduce using rule 14 (statement -> PRINT LPAREN print_list RPAREN .)
+
+
+state 94
+
+    (15) print_list -> print_list DELIM . expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 99
+
+state 95
+
+    (18) statement -> STRUCT WORD LCURLY var_decls . RCURLY
+    (19) var_decls -> var_decls . var_declare
+    (26) var_declare -> . INTNAME WORD
+    (27) var_declare -> . DOUBLENAME WORD
+    (28) var_declare -> . CHARNAME WORD
+    (29) var_declare -> . STRINGNAME WORD
+    (30) var_declare -> . BOOLNAME WORD
+
+    RCURLY          shift and go to state 100
+    INTNAME         shift and go to state 22
+    DOUBLENAME      shift and go to state 23
+    CHARNAME        shift and go to state 24
+    STRINGNAME      shift and go to state 25
+    BOOLNAME        shift and go to state 26
+
+    var_declare                    shift and go to state 101
+
+state 96
+
+    (20) var_decls -> var_declare .
+
+    RCURLY          reduce using rule 20 (var_decls -> var_declare .)
+    INTNAME         reduce using rule 20 (var_decls -> var_declare .)
+    DOUBLENAME      reduce using rule 20 (var_decls -> var_declare .)
+    CHARNAME        reduce using rule 20 (var_decls -> var_declare .)
+    STRINGNAME      reduce using rule 20 (var_decls -> var_declare .)
+    BOOLNAME        reduce using rule 20 (var_decls -> var_declare .)
+
+
+state 97
+
+    (8) if -> IF LPAREN expression RPAREN . LCURLY statements RCURLY elseif else
+
+    LCURLY          shift and go to state 102
+
+
+state 98
+
+    (13) statement -> WORD DOT WORD EQUALS expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    SEMICOLON       reduce using rule 13 (statement -> WORD DOT WORD EQUALS expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    LTE             shift and go to state 37
+    GTE             shift and go to state 38
+    GT              shift and go to state 39
+    LT              shift and go to state 40
+
+
+state 99
+
+    (15) print_list -> print_list DELIM expression .
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    RPAREN          reduce using rule 15 (print_list -> print_list DELIM expression .)
+    DELIM           reduce using rule 15 (print_list -> print_list DELIM expression .)
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    LTE             shift and go to state 37
+    GTE             shift and go to state 38
+    GT              shift and go to state 39
+    LT              shift and go to state 40
+
+
+state 100
+
+    (18) statement -> STRUCT WORD LCURLY var_decls RCURLY .
+
+    SEMICOLON       reduce using rule 18 (statement -> STRUCT WORD LCURLY var_decls RCURLY .)
+
+
+state 101
+
+    (19) var_decls -> var_decls var_declare .
+
+    RCURLY          reduce using rule 19 (var_decls -> var_decls var_declare .)
+    INTNAME         reduce using rule 19 (var_decls -> var_decls var_declare .)
+    DOUBLENAME      reduce using rule 19 (var_decls -> var_decls var_declare .)
+    CHARNAME        reduce using rule 19 (var_decls -> var_decls var_declare .)
+    STRINGNAME      reduce using rule 19 (var_decls -> var_decls var_declare .)
+    BOOLNAME        reduce using rule 19 (var_decls -> var_decls var_declare .)
+
+
+state 102
+
+    (8) if -> IF LPAREN expression RPAREN LCURLY . statements RCURLY elseif else
+    (4) statements -> . statements statement SEMICOLON
+    (5) statements -> . statement SEMICOLON
+    (6) statements -> . statements if
+    (7) statements -> . if
+    (13) statement -> . WORD DOT WORD EQUALS expression
+    (14) statement -> . PRINT LPAREN print_list RPAREN
+    (17) statement -> . WORD WORD
+    (18) statement -> . STRUCT WORD LCURLY var_decls RCURLY
+    (21) statement -> . var_declare
+    (22) statement -> . var_assign
+    (47) statement -> . expression INC
+    (48) statement -> . expression DEC
+    (8) if -> . IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else
+    (26) var_declare -> . INTNAME WORD
+    (27) var_declare -> . DOUBLENAME WORD
+    (28) var_declare -> . CHARNAME WORD
+    (29) var_declare -> . STRINGNAME WORD
+    (30) var_declare -> . BOOLNAME WORD
+    (24) var_assign -> . var_declare EQUALS expression
+    (25) var_assign -> . WORD EQUALS expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    WORD            shift and go to state 45
+    PRINT           shift and go to state 17
+    STRUCT          shift and go to state 18
+    IF              shift and go to state 21
+    INTNAME         shift and go to state 22
+    DOUBLENAME      shift and go to state 23
+    CHARNAME        shift and go to state 24
+    STRINGNAME      shift and go to state 25
+    BOOLNAME        shift and go to state 26
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 46
+    statements                     shift and go to state 103
+    statement                      shift and go to state 15
+    if                             shift and go to state 16
+    var_declare                    shift and go to state 19
+    var_assign                     shift and go to state 20
+
+state 103
+
+    (8) if -> IF LPAREN expression RPAREN LCURLY statements . RCURLY elseif else
+    (4) statements -> statements . statement SEMICOLON
+    (6) statements -> statements . if
+    (13) statement -> . WORD DOT WORD EQUALS expression
+    (14) statement -> . PRINT LPAREN print_list RPAREN
+    (17) statement -> . WORD WORD
+    (18) statement -> . STRUCT WORD LCURLY var_decls RCURLY
+    (21) statement -> . var_declare
+    (22) statement -> . var_assign
+    (47) statement -> . expression INC
+    (48) statement -> . expression DEC
+    (8) if -> . IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else
+    (26) var_declare -> . INTNAME WORD
+    (27) var_declare -> . DOUBLENAME WORD
+    (28) var_declare -> . CHARNAME WORD
+    (29) var_declare -> . STRINGNAME WORD
+    (30) var_declare -> . BOOLNAME WORD
+    (24) var_assign -> . var_declare EQUALS expression
+    (25) var_assign -> . WORD EQUALS expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    RCURLY          shift and go to state 104
+    WORD            shift and go to state 45
+    PRINT           shift and go to state 17
+    STRUCT          shift and go to state 18
+    IF              shift and go to state 21
+    INTNAME         shift and go to state 22
+    DOUBLENAME      shift and go to state 23
+    CHARNAME        shift and go to state 24
+    STRINGNAME      shift and go to state 25
+    BOOLNAME        shift and go to state 26
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 46
+    statement                      shift and go to state 43
+    if                             shift and go to state 44
+    var_declare                    shift and go to state 19
+    var_assign                     shift and go to state 20
+
+state 104
+
+    (8) if -> IF LPAREN expression RPAREN LCURLY statements RCURLY . elseif else
+    (9) elseif -> . ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else
+    (10) elseif -> . empty
+    (57) empty -> .
+
+    ELSEIF          shift and go to state 106
+    ELSE            reduce using rule 57 (empty -> .)
+    WORD            reduce using rule 57 (empty -> .)
+    PRINT           reduce using rule 57 (empty -> .)
+    STRUCT          reduce using rule 57 (empty -> .)
+    IF              reduce using rule 57 (empty -> .)
+    INTNAME         reduce using rule 57 (empty -> .)
+    DOUBLENAME      reduce using rule 57 (empty -> .)
+    CHARNAME        reduce using rule 57 (empty -> .)
+    STRINGNAME      reduce using rule 57 (empty -> .)
+    BOOLNAME        reduce using rule 57 (empty -> .)
+    LPAREN          reduce using rule 57 (empty -> .)
+    PLUS            reduce using rule 57 (empty -> .)
+    MINUS           reduce using rule 57 (empty -> .)
+    NOT             reduce using rule 57 (empty -> .)
+    INT             reduce using rule 57 (empty -> .)
+    DOUBLE          reduce using rule 57 (empty -> .)
+    CHAR            reduce using rule 57 (empty -> .)
+    STRING          reduce using rule 57 (empty -> .)
+    BOOL            reduce using rule 57 (empty -> .)
+    $end            reduce using rule 57 (empty -> .)
+    RCURLY          reduce using rule 57 (empty -> .)
+
+    elseif                         shift and go to state 105
+    empty                          shift and go to state 107
+
+state 105
+
+    (8) if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif . else
+    (11) else -> . ELSE LCURLY statements RCURLY
+    (12) else -> . empty
+    (57) empty -> .
+
+    ELSE            shift and go to state 109
+    WORD            reduce using rule 57 (empty -> .)
+    PRINT           reduce using rule 57 (empty -> .)
+    STRUCT          reduce using rule 57 (empty -> .)
+    IF              reduce using rule 57 (empty -> .)
+    INTNAME         reduce using rule 57 (empty -> .)
+    DOUBLENAME      reduce using rule 57 (empty -> .)
+    CHARNAME        reduce using rule 57 (empty -> .)
+    STRINGNAME      reduce using rule 57 (empty -> .)
+    BOOLNAME        reduce using rule 57 (empty -> .)
+    LPAREN          reduce using rule 57 (empty -> .)
+    PLUS            reduce using rule 57 (empty -> .)
+    MINUS           reduce using rule 57 (empty -> .)
+    NOT             reduce using rule 57 (empty -> .)
+    INT             reduce using rule 57 (empty -> .)
+    DOUBLE          reduce using rule 57 (empty -> .)
+    CHAR            reduce using rule 57 (empty -> .)
+    STRING          reduce using rule 57 (empty -> .)
+    BOOL            reduce using rule 57 (empty -> .)
+    $end            reduce using rule 57 (empty -> .)
+    RCURLY          reduce using rule 57 (empty -> .)
+
+    else                           shift and go to state 108
+    empty                          shift and go to state 110
+
+state 106
+
+    (9) elseif -> ELSEIF . LPAREN expression RPAREN LCURLY statements RCURLY elseif else
+
+    LPAREN          shift and go to state 111
+
+
+state 107
+
+    (10) elseif -> empty .
+
+    ELSE            reduce using rule 10 (elseif -> empty .)
+    WORD            reduce using rule 10 (elseif -> empty .)
+    PRINT           reduce using rule 10 (elseif -> empty .)
+    STRUCT          reduce using rule 10 (elseif -> empty .)
+    IF              reduce using rule 10 (elseif -> empty .)
+    INTNAME         reduce using rule 10 (elseif -> empty .)
+    DOUBLENAME      reduce using rule 10 (elseif -> empty .)
+    CHARNAME        reduce using rule 10 (elseif -> empty .)
+    STRINGNAME      reduce using rule 10 (elseif -> empty .)
+    BOOLNAME        reduce using rule 10 (elseif -> empty .)
+    LPAREN          reduce using rule 10 (elseif -> empty .)
+    PLUS            reduce using rule 10 (elseif -> empty .)
+    MINUS           reduce using rule 10 (elseif -> empty .)
+    NOT             reduce using rule 10 (elseif -> empty .)
+    INT             reduce using rule 10 (elseif -> empty .)
+    DOUBLE          reduce using rule 10 (elseif -> empty .)
+    CHAR            reduce using rule 10 (elseif -> empty .)
+    STRING          reduce using rule 10 (elseif -> empty .)
+    BOOL            reduce using rule 10 (elseif -> empty .)
+    $end            reduce using rule 10 (elseif -> empty .)
+    RCURLY          reduce using rule 10 (elseif -> empty .)
+
+
+state 108
+
+    (8) if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .
+
+    WORD            reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    PRINT           reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    STRUCT          reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    IF              reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    INTNAME         reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    DOUBLENAME      reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    CHARNAME        reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    STRINGNAME      reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    BOOLNAME        reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    LPAREN          reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    PLUS            reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    MINUS           reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    NOT             reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    INT             reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    DOUBLE          reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    CHAR            reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    STRING          reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    BOOL            reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    $end            reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    RCURLY          reduce using rule 8 (if -> IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+
+
+state 109
+
+    (11) else -> ELSE . LCURLY statements RCURLY
+
+    LCURLY          shift and go to state 112
+
+
+state 110
+
+    (12) else -> empty .
+
+    WORD            reduce using rule 12 (else -> empty .)
+    PRINT           reduce using rule 12 (else -> empty .)
+    STRUCT          reduce using rule 12 (else -> empty .)
+    IF              reduce using rule 12 (else -> empty .)
+    INTNAME         reduce using rule 12 (else -> empty .)
+    DOUBLENAME      reduce using rule 12 (else -> empty .)
+    CHARNAME        reduce using rule 12 (else -> empty .)
+    STRINGNAME      reduce using rule 12 (else -> empty .)
+    BOOLNAME        reduce using rule 12 (else -> empty .)
+    LPAREN          reduce using rule 12 (else -> empty .)
+    PLUS            reduce using rule 12 (else -> empty .)
+    MINUS           reduce using rule 12 (else -> empty .)
+    NOT             reduce using rule 12 (else -> empty .)
+    INT             reduce using rule 12 (else -> empty .)
+    DOUBLE          reduce using rule 12 (else -> empty .)
+    CHAR            reduce using rule 12 (else -> empty .)
+    STRING          reduce using rule 12 (else -> empty .)
+    BOOL            reduce using rule 12 (else -> empty .)
+    $end            reduce using rule 12 (else -> empty .)
+    RCURLY          reduce using rule 12 (else -> empty .)
+    ELSE            reduce using rule 12 (else -> empty .)
+
+
+state 111
+
+    (9) elseif -> ELSEIF LPAREN . expression RPAREN LCURLY statements RCURLY elseif else
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    WORD            shift and go to state 48
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 113
+
+state 112
+
+    (11) else -> ELSE LCURLY . statements RCURLY
+    (4) statements -> . statements statement SEMICOLON
+    (5) statements -> . statement SEMICOLON
+    (6) statements -> . statements if
+    (7) statements -> . if
+    (13) statement -> . WORD DOT WORD EQUALS expression
+    (14) statement -> . PRINT LPAREN print_list RPAREN
+    (17) statement -> . WORD WORD
+    (18) statement -> . STRUCT WORD LCURLY var_decls RCURLY
+    (21) statement -> . var_declare
+    (22) statement -> . var_assign
+    (47) statement -> . expression INC
+    (48) statement -> . expression DEC
+    (8) if -> . IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else
+    (26) var_declare -> . INTNAME WORD
+    (27) var_declare -> . DOUBLENAME WORD
+    (28) var_declare -> . CHARNAME WORD
+    (29) var_declare -> . STRINGNAME WORD
+    (30) var_declare -> . BOOLNAME WORD
+    (24) var_assign -> . var_declare EQUALS expression
+    (25) var_assign -> . WORD EQUALS expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    WORD            shift and go to state 45
+    PRINT           shift and go to state 17
+    STRUCT          shift and go to state 18
+    IF              shift and go to state 21
+    INTNAME         shift and go to state 22
+    DOUBLENAME      shift and go to state 23
+    CHARNAME        shift and go to state 24
+    STRINGNAME      shift and go to state 25
+    BOOLNAME        shift and go to state 26
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    statements                     shift and go to state 114
+    statement                      shift and go to state 15
+    if                             shift and go to state 16
+    expression                     shift and go to state 46
+    var_declare                    shift and go to state 19
+    var_assign                     shift and go to state 20
+
+state 113
+
+    (9) elseif -> ELSEIF LPAREN expression . RPAREN LCURLY statements RCURLY elseif else
+    (31) expression -> expression . MULTIPLY expression
+    (32) expression -> expression . DIVIDE expression
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . EXPONENT expression
+    (36) expression -> expression . MODULUS expression
+    (37) expression -> expression . AND expression
+    (38) expression -> expression . OR expression
+    (39) expression -> expression . EQ expression
+    (40) expression -> expression . NE expression
+    (41) expression -> expression . LTE expression
+    (42) expression -> expression . GTE expression
+    (43) expression -> expression . GT expression
+    (44) expression -> expression . LT expression
+
+    RPAREN          shift and go to state 115
+    MULTIPLY        shift and go to state 27
+    DIVIDE          shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    EXPONENT        shift and go to state 31
+    MODULUS         shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    LTE             shift and go to state 37
+    GTE             shift and go to state 38
+    GT              shift and go to state 39
+    LT              shift and go to state 40
+
+
+state 114
+
+    (11) else -> ELSE LCURLY statements . RCURLY
+    (4) statements -> statements . statement SEMICOLON
+    (6) statements -> statements . if
+    (13) statement -> . WORD DOT WORD EQUALS expression
+    (14) statement -> . PRINT LPAREN print_list RPAREN
+    (17) statement -> . WORD WORD
+    (18) statement -> . STRUCT WORD LCURLY var_decls RCURLY
+    (21) statement -> . var_declare
+    (22) statement -> . var_assign
+    (47) statement -> . expression INC
+    (48) statement -> . expression DEC
+    (8) if -> . IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else
+    (26) var_declare -> . INTNAME WORD
+    (27) var_declare -> . DOUBLENAME WORD
+    (28) var_declare -> . CHARNAME WORD
+    (29) var_declare -> . STRINGNAME WORD
+    (30) var_declare -> . BOOLNAME WORD
+    (24) var_assign -> . var_declare EQUALS expression
+    (25) var_assign -> . WORD EQUALS expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    RCURLY          shift and go to state 116
+    WORD            shift and go to state 45
+    PRINT           shift and go to state 17
+    STRUCT          shift and go to state 18
+    IF              shift and go to state 21
+    INTNAME         shift and go to state 22
+    DOUBLENAME      shift and go to state 23
+    CHARNAME        shift and go to state 24
+    STRINGNAME      shift and go to state 25
+    BOOLNAME        shift and go to state 26
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    statement                      shift and go to state 43
+    if                             shift and go to state 44
+    expression                     shift and go to state 46
+    var_declare                    shift and go to state 19
+    var_assign                     shift and go to state 20
+
+state 115
+
+    (9) elseif -> ELSEIF LPAREN expression RPAREN . LCURLY statements RCURLY elseif else
+
+    LCURLY          shift and go to state 117
+
+
+state 116
+
+    (11) else -> ELSE LCURLY statements RCURLY .
+
+    WORD            reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    PRINT           reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    STRUCT          reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    IF              reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    INTNAME         reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    DOUBLENAME      reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    CHARNAME        reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    STRINGNAME      reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    BOOLNAME        reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    LPAREN          reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    PLUS            reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    MINUS           reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    NOT             reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    INT             reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    DOUBLE          reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    CHAR            reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    STRING          reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    BOOL            reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    $end            reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    RCURLY          reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+    ELSE            reduce using rule 11 (else -> ELSE LCURLY statements RCURLY .)
+
+
+state 117
+
+    (9) elseif -> ELSEIF LPAREN expression RPAREN LCURLY . statements RCURLY elseif else
+    (4) statements -> . statements statement SEMICOLON
+    (5) statements -> . statement SEMICOLON
+    (6) statements -> . statements if
+    (7) statements -> . if
+    (13) statement -> . WORD DOT WORD EQUALS expression
+    (14) statement -> . PRINT LPAREN print_list RPAREN
+    (17) statement -> . WORD WORD
+    (18) statement -> . STRUCT WORD LCURLY var_decls RCURLY
+    (21) statement -> . var_declare
+    (22) statement -> . var_assign
+    (47) statement -> . expression INC
+    (48) statement -> . expression DEC
+    (8) if -> . IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else
+    (26) var_declare -> . INTNAME WORD
+    (27) var_declare -> . DOUBLENAME WORD
+    (28) var_declare -> . CHARNAME WORD
+    (29) var_declare -> . STRINGNAME WORD
+    (30) var_declare -> . BOOLNAME WORD
+    (24) var_assign -> . var_declare EQUALS expression
+    (25) var_assign -> . WORD EQUALS expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    WORD            shift and go to state 45
+    PRINT           shift and go to state 17
+    STRUCT          shift and go to state 18
+    IF              shift and go to state 21
+    INTNAME         shift and go to state 22
+    DOUBLENAME      shift and go to state 23
+    CHARNAME        shift and go to state 24
+    STRINGNAME      shift and go to state 25
+    BOOLNAME        shift and go to state 26
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 46
+    statements                     shift and go to state 118
+    statement                      shift and go to state 15
+    if                             shift and go to state 16
+    var_declare                    shift and go to state 19
+    var_assign                     shift and go to state 20
+
+state 118
+
+    (9) elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements . RCURLY elseif else
+    (4) statements -> statements . statement SEMICOLON
+    (6) statements -> statements . if
+    (13) statement -> . WORD DOT WORD EQUALS expression
+    (14) statement -> . PRINT LPAREN print_list RPAREN
+    (17) statement -> . WORD WORD
+    (18) statement -> . STRUCT WORD LCURLY var_decls RCURLY
+    (21) statement -> . var_declare
+    (22) statement -> . var_assign
+    (47) statement -> . expression INC
+    (48) statement -> . expression DEC
+    (8) if -> . IF LPAREN expression RPAREN LCURLY statements RCURLY elseif else
+    (26) var_declare -> . INTNAME WORD
+    (27) var_declare -> . DOUBLENAME WORD
+    (28) var_declare -> . CHARNAME WORD
+    (29) var_declare -> . STRINGNAME WORD
+    (30) var_declare -> . BOOLNAME WORD
+    (24) var_assign -> . var_declare EQUALS expression
+    (25) var_assign -> . WORD EQUALS expression
+    (23) expression -> . LPAREN expression RPAREN
+    (31) expression -> . expression MULTIPLY expression
+    (32) expression -> . expression DIVIDE expression
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression EXPONENT expression
+    (36) expression -> . expression MODULUS expression
+    (37) expression -> . expression AND expression
+    (38) expression -> . expression OR expression
+    (39) expression -> . expression EQ expression
+    (40) expression -> . expression NE expression
+    (41) expression -> . expression LTE expression
+    (42) expression -> . expression GTE expression
+    (43) expression -> . expression GT expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . PLUS expression
+    (46) expression -> . MINUS expression
+    (49) expression -> . NOT expression
+    (50) expression -> . WORD
+    (51) expression -> . INT
+    (52) expression -> . DOUBLE
+    (53) expression -> . CHAR
+    (54) expression -> . STRING
+    (55) expression -> . BOOL
+    (56) expression -> . WORD DOT WORD
+
+    RCURLY          shift and go to state 119
+    WORD            shift and go to state 45
+    PRINT           shift and go to state 17
+    STRUCT          shift and go to state 18
+    IF              shift and go to state 21
+    INTNAME         shift and go to state 22
+    DOUBLENAME      shift and go to state 23
+    CHARNAME        shift and go to state 24
+    STRINGNAME      shift and go to state 25
+    BOOLNAME        shift and go to state 26
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    NOT             shift and go to state 8
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+
+    expression                     shift and go to state 46
+    statement                      shift and go to state 43
+    if                             shift and go to state 44
+    var_declare                    shift and go to state 19
+    var_assign                     shift and go to state 20
+
+state 119
+
+    (9) elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY . elseif else
+    (9) elseif -> . ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else
+    (10) elseif -> . empty
+    (57) empty -> .
+
+    ELSEIF          shift and go to state 106
+    ELSE            reduce using rule 57 (empty -> .)
+    WORD            reduce using rule 57 (empty -> .)
+    PRINT           reduce using rule 57 (empty -> .)
+    STRUCT          reduce using rule 57 (empty -> .)
+    IF              reduce using rule 57 (empty -> .)
+    INTNAME         reduce using rule 57 (empty -> .)
+    DOUBLENAME      reduce using rule 57 (empty -> .)
+    CHARNAME        reduce using rule 57 (empty -> .)
+    STRINGNAME      reduce using rule 57 (empty -> .)
+    BOOLNAME        reduce using rule 57 (empty -> .)
+    LPAREN          reduce using rule 57 (empty -> .)
+    PLUS            reduce using rule 57 (empty -> .)
+    MINUS           reduce using rule 57 (empty -> .)
+    NOT             reduce using rule 57 (empty -> .)
+    INT             reduce using rule 57 (empty -> .)
+    DOUBLE          reduce using rule 57 (empty -> .)
+    CHAR            reduce using rule 57 (empty -> .)
+    STRING          reduce using rule 57 (empty -> .)
+    BOOL            reduce using rule 57 (empty -> .)
+    $end            reduce using rule 57 (empty -> .)
+    RCURLY          reduce using rule 57 (empty -> .)
+
+    elseif                         shift and go to state 120
+    empty                          shift and go to state 107
+
+state 120
+
+    (9) elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif . else
+    (11) else -> . ELSE LCURLY statements RCURLY
+    (12) else -> . empty
+    (57) empty -> .
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    ELSE            shift and go to state 109
+    WORD            reduce using rule 57 (empty -> .)
+    PRINT           reduce using rule 57 (empty -> .)
+    STRUCT          reduce using rule 57 (empty -> .)
+    IF              reduce using rule 57 (empty -> .)
+    INTNAME         reduce using rule 57 (empty -> .)
+    DOUBLENAME      reduce using rule 57 (empty -> .)
+    CHARNAME        reduce using rule 57 (empty -> .)
+    STRINGNAME      reduce using rule 57 (empty -> .)
+    BOOLNAME        reduce using rule 57 (empty -> .)
+    LPAREN          reduce using rule 57 (empty -> .)
+    PLUS            reduce using rule 57 (empty -> .)
+    MINUS           reduce using rule 57 (empty -> .)
+    NOT             reduce using rule 57 (empty -> .)
+    INT             reduce using rule 57 (empty -> .)
+    DOUBLE          reduce using rule 57 (empty -> .)
+    CHAR            reduce using rule 57 (empty -> .)
+    STRING          reduce using rule 57 (empty -> .)
+    BOOL            reduce using rule 57 (empty -> .)
+    $end            reduce using rule 57 (empty -> .)
+    RCURLY          reduce using rule 57 (empty -> .)
+
+  ! ELSE            [ reduce using rule 57 (empty -> .) ]
+
+    else                           shift and go to state 121
+    empty                          shift and go to state 110
+
+state 121
+
+    (9) elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .
+
+    ELSE            reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    WORD            reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    PRINT           reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    STRUCT          reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    IF              reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    INTNAME         reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    DOUBLENAME      reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    CHARNAME        reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    STRINGNAME      reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    BOOLNAME        reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    LPAREN          reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    PLUS            reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    MINUS           reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    NOT             reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    INT             reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    DOUBLE          reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    CHAR            reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    STRING          reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    BOOL            reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    $end            reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+    RCURLY          reduce using rule 9 (elseif -> ELSEIF LPAREN expression RPAREN LCURLY statements RCURLY elseif else .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ELSE in state 120 resolved as shift
